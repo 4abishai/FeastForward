@@ -1,0 +1,26 @@
+# /donation → donation-service:8009
+# /status → returns 200 OK immediately
+
+_format_version: "3.0"
+services:
+  - name: donation-service
+    url: http://donation-service:8900
+    routes:
+      - name: donation-route
+        paths:
+          - /donation
+        strip_path: false
+
+
+  - name: kong-status
+    url: http://localhost:9
+    routes:
+      - name: status-route
+        paths:
+          - /status
+        strip_path: true
+    plugins:
+      - name: request-termination
+        config:
+          status_code: 200
+          message: "OK"

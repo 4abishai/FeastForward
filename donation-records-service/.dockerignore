@@ -1,0 +1,6 @@
+.env
+.env.*
+.gitignore
+.gitattributes
+.idea
+.gradle

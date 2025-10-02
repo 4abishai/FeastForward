@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    lombokVersion = "1.18.38"
+}
+
+dependencies {
+    // Spring
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security' // For security features
+    implementation 'org.springframework.boot:spring-boot-starter-amqp:3.5.0'
+    implementation 'me.paulschwarz:spring-dotenv:4.0.0'
+
+    // implementation 'org.springframework.boot:spring-boot-oauth2-resource-server:3.2.5'
+
+    // RabbitMQ
+    implementation 'com.rabbitmq:amqp-client:5.25.0'
+
+    // Postgres & Hibernate
+    implementation 'org.hibernate:hibernate-core:6.6.15.Final'
+    implementation 'org.postgresql:postgresql:42.7.3'
+
+    // Lombok
+    compileOnly group:'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+    annotationProcessor group:'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+    testAnnotationProcessor group:'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+    testImplementation group:'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
